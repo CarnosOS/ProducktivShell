@@ -1,5 +1,5 @@
 import string, sys, sqlite3, cmd, dropbox, webbrowser
-
+from Lib import archersys
 class ProducktivShellRolodex(cmd.Cmd):
     def __init__(self):
          
@@ -49,8 +49,8 @@ class ProducktivShellRolodex(cmd.Cmd):
           self.cursor.execute("DELETE FROM " + input("Contact Type:") + " WHERE " + field + "=" + value)
           print("Deleted Record.")
     def do_InitDropbox(self,arg):
-          app_key = 'brwekpcno93vtpz'
-          app_secret = 'np5coz7g4nzp9og'
+          app_key = archersys.ARCHERSYS_FOR_DROPBOX_KEY
+          app_secret = archersys.ARCHERSYS_FOR_DROPBOX_SECRET
 
 
           flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
@@ -81,6 +81,4 @@ class ProducktivShellRolodex(cmd.Cmd):
           response = self.client.put_file(self.database_name + ".db", f)
           print("uploaded:", response)
    
-contacts = core.ProducktivShellRolodex()
-contacts.cmdloop()
          
